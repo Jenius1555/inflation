@@ -1,0 +1,20 @@
+import requests
+
+# Set up your Alpha Vantage API key
+api_key = "YOUR_API_KEY"
+
+# Function to get the inflation data for the English pound
+def get_inflation_data():
+    url = f"https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=GBP&to_symbol=USD&apikey={api_key}"
+    response = requests.get(url)
+    data = response.json()
+    
+    # Extract the monthly inflation data
+    inflation_data = data["Time Series FX (Monthly)"]
+    
+    # Print the inflation data
+    for date, rate in inflation_data.items():
+        print(f"{date}: {rate}")
+
+# Call the function to get the inflation data
+get_inflation_data()
